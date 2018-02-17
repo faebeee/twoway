@@ -1,6 +1,6 @@
 import Store from '../Store';
 
-export default class View{
+export default class View {
 
     element: Element;
     propertyName: string;

@@ -7,6 +7,9 @@ module.exports = {
         path: path.resolve(__dirname, "lib")
     },
     watch: true,
+    resolve: {
+        extensions: [".tsx", ".ts", ".js"]
+    },
     module: {
         rules: [
             {

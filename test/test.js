@@ -1,9 +1,3 @@
-const TwoWay = require('../');
+import TwoWay  from '../src';
 
-const app = new TwoWay("#app", {
-    number2: 0
-});
-
- setInterval(function() {
-     app.setValue('number2', Math.random());
- }, 1000);
+const app = new TwoWay("#app");
