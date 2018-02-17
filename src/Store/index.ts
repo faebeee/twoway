@@ -18,6 +18,13 @@ export default class Store {
         }
     }
 
+    /**
+     * Set value
+     *
+     * @param {string} prop
+     * @param {(Boolean | String | Number | Object)} value
+     * @memberof Store
+     */
     setValue(prop: string, value: Boolean | String | Number | Object): void {
         for (let i = 0; i < this.values.length; i++) {
             const val = this.values[i];
@@ -31,7 +38,14 @@ export default class Store {
         }
     }
 
-    getValue(prop: string) {
+    /**
+     * Get value
+     *
+     * @param {string} prop
+     * @returns {(Boolean | String | Number | Object)}
+     * @memberof Store
+     */
+    getValue(prop: string): Boolean | String | Number | Object {
         for (let i = 0; i < this.values.length; i++) {
             const val = this.values[i];
             if (val.name === prop) {
@@ -41,16 +55,29 @@ export default class Store {
         return null;
     }
 
+    /**
+     * Check if value has been setup in store
+     * 
+     * @param {string} prop 
+     * @returns {Boolean} 
+     * @memberof Store
+     */
     isPropertySetUp(prop: string): Boolean {
         for (let i = 0; i < this.values.length; i++) {
             const val = this.values[i];
             if (val.name === prop) {
                 return true;
             }
-            return false;
         }
+        return false;
     }
 
+    /**
+     * setup prop
+     * 
+     * @param {string} prop 
+     * @memberof Store
+     */
     setupProperty(prop: string): void {
         this.values.push({
             name: prop,
@@ -59,8 +86,15 @@ export default class Store {
         });
     }
 
+    /**
+     * Add new observer
+     * 
+     * @param {string} prop 
+     * @param {View} view 
+     * @memberof Store
+     */
     registerObserver(prop: string, view: View): void {
-        if(!this.isPropertySetUp(prop)){
+        if (!this.isPropertySetUp(prop)) {
             this.setupProperty(prop);
         }
 

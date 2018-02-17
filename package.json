@@ -4,17 +4,19 @@
   "description": "",
   "main": "./lib/bundle.js",
   "scripts": {
+    "dev": "NODE_ENV=dev ./node_modules/.bin/webpack --config webpack.config.js",
     "build": "./node_modules/.bin/webpack --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-minify-webpack-plugin": "^0.3.0",
     "babel-preset-env": "^1.6.1",
     "ts-loader": "^3.5.0",
     "typescript": "^2.7.2",
-    "webpack": "^3.11.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2"
+    "webpack": "^3.11.0"
   }
 }
