@@ -1,12 +1,20 @@
 # twoway
+`twoway` is a very lightweight zerodependency two way databinding library. Specially designed for people wo don't want to have a framework like react, vue or angular.
+
 
 # Setup
-## Install
+## CDN
 To add `twoway` to your website you simply include the library via CDN
 
-    https://cdn.jsdelivr.net/npm/twoway@0.0.1
+    https://cdn.jsdelivr.net/npm/twoway
 
-or you can install it via NPM
+and when the page is ready run 
+
+    new TwoWay('#myApp');
+
+## NPM
+
+Install it via NPM
 
     npm i twoway --save
 

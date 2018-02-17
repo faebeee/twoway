@@ -31,5 +31,6 @@ export default class Input {
 
     update(value: any): void {
         this.value = value;
+        (<HTMLInputElement>this.element).value = value;
     }
 }

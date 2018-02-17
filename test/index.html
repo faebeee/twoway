@@ -1,10 +1,18 @@
 <div id=app>
     <div>
+        <h2>Simple Input</h2>
         <div data-property="number"></div>
         <input data-model="number" type="number">
     </div>
 
     <div>
+        <h2>Prefilled Input</h2>
+        <div data-property="name"></div>
+        <input data-model="name" type="text">
+    </div>
+
+    <div>
+        <h2>Checkbox</h2>
         <div data-property="color"></div>
         <label>
             <input name="color" type="radio" value="red" data-model="color"> red
@@ -15,6 +23,7 @@
     </div>
 
     <div>
+        <h2>Select</h2>        
         <div data-property="size"></div>
         <select data-model="size">
             <option value='xs'>XS</option>
@@ -28,5 +37,7 @@
 <script src="../lib/bundle.js"></script>
 
 <script>
-    const app = new TwoWay("#app");
+    const app = new TwoWay("#app", {
+        name: 'Fabs'
+    });
 </script>
