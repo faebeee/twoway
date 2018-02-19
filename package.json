@@ -1,6 +1,6 @@
 {
     "name": "twoway",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Simple Zero dependency 2way databinding library",
     "keywords": [
         "twoway",
@@ -18,8 +18,7 @@
     },
     "main": "./lib/bundle.js",
     "scripts": {
-        "dev":
-            "NODE_ENV=dev ./node_modules/.bin/webpack --config webpack.config.js",
+        "dev": "NODE_ENV=dev ./node_modules/.bin/webpack --config webpack.config.js",
         "build": "./node_modules/.bin/webpack --config webpack.config.js"
     },
     "author": "Faebeee",
