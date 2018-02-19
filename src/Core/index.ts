@@ -13,6 +13,8 @@ export default class TwoWay {
         this.rootElementId = rootElementId;
         this.store = new Store(store);
         this.views = [];
+
+        this.init();
     }
 
     /**
@@ -20,9 +22,13 @@ export default class TwoWay {
      * 
      * @memberof TwoWay
      */
-    init(): Object {
+    init() {
         this.initViews();
         this.initInputs();
+    }
+
+    /** */
+    getStore(): Object{
         return this.store.store;
     }
 

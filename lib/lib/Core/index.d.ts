@@ -10,7 +10,9 @@ export default class TwoWay {
      *
      * @memberof TwoWay
      */
-    init(): Object;
+    init(): void;
+    /** */
+    getStore(): Object;
     /**
      * Initialize all views
      *

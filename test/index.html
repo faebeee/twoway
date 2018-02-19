@@ -45,12 +45,14 @@
 <script src="../lib/bundle.js"></script>
 
 <script>
-    let store = new TwoWay("#app", {
+    const twoway = new TwoWay("#app", {
             number: null,
             color: null,
             size: null,
             name: "Fabs",
             programmaticName: "Fabs",
         }
-    ).init();
+    );
+    
+    let store = twoway.getStore();
 </script>

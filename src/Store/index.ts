@@ -1,13 +1,12 @@
 import StoreItemInterface from "./StoreItemInterface";
+import SubscriberInterface from "./SubscriberInterface";
 import View from "../View";
 
 export default class Store {
-    values: Array<StoreItemInterface>;
     store: Object;
-    subscribers: Array<Object>;
+    subscribers: Array<SubscriberInterface>;
 
     constructor(initialStore: Object) {
-        this.values = [];
         this.subscribers = [];
 
         this.store = this.observe(initialStore, (property, value) => {
@@ -18,9 +17,8 @@ export default class Store {
     buildProxy(prefix, o, callback) {
         return new Proxy(o, {
             set(target, property, value) {
-                
                 // same as above, but add prefix
-                callback(prefix + property, value);
+                callback(`${prefix}${property}`, value);
                 target[property] = value;
                 return true;
             },
@@ -29,7 +27,7 @@ export default class Store {
                 const out = target[property];
                 if (out instanceof Object) {
                     return this.buildProxy(
-                        prefix + property + ".",
+                        `${prefix}${property}.`,
                         out,
                         callback
                     );
@@ -61,10 +59,10 @@ export default class Store {
      * @memberof Store
      */
     registerObserver(prop: string, view: View): void {
-        this.subscribers.push({ 
+        this.subscribers.push({
             property: prop,
             observer: view
-         });
+        });
 
         view.update(this.store[prop]);
     }

@@ -16,7 +16,7 @@ and when the page is ready run
             size: null,
             name: "Fabs",
         }
-    ).init();
+    ).getStore();
 
 ## NPM
 
@@ -33,10 +33,34 @@ and include and initialize it in you main file
             size: null,
             name: "Fabs",
         }
-    ).init();
+    ).getStore();
 
 # Usage
-## Select
+
+## Create a new store
+After loading the library in your project it is very simple to setup.
+First we create a new `TwoWay` object. The constructor required a root
+DOM node for your app and an initial state/store.
+
+    const twoway = new new TwoWay("#app", {
+        name: "Fabs",
+    })
+
+    let store = twoway.getStore();
+
+## Manipulate store
+After creating the store you can easily manupulate the values by
+calling `store.name = 'Foo';` and the DOM updates automatically
+
+     const twoway = new new TwoWay("#app", {
+        name: "Fabs",
+    })
+
+    let store = twoway.getStore();
+    store.name = "Foo Bar";
+
+## Elements
+### Select
 
     <div data-property="size"></div>
     <select data-model="size">
@@ -46,7 +70,7 @@ and include and initialize it in you main file
         <option value='l'>L</option>
     </select>
 
-## Checkbox
+### Checkbox
 
     <div data-property="color"></div>
     <label>
@@ -57,9 +81,13 @@ and include and initialize it in you main file
     </label>
 
 
-## Radiobox
+### Textarea
+Comming soon
 
-## Input
+### Radiobox
+Comming soon
+
+### Input
 
     <div id=app>
         <div data-property="number"></div>

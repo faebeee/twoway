@@ -1,9 +1,8 @@
-import StoreItemInterface from "./StoreItemInterface";
+import SubscriberInterface from "./SubscriberInterface";
 import View from "../View";
 export default class Store {
-    values: Array<StoreItemInterface>;
     store: Object;
-    subscribers: Array<Object>;
+    subscribers: Array<SubscriberInterface>;
     constructor(initialStore: Object);
     buildProxy(prefix: any, o: any, callback: any): any;
     observe(o: any, callback: any): any;
