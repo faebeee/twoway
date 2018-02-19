@@ -4,13 +4,13 @@ export default class TwoWay {
     rootElementId: string;
     store: Store;
     views: Array<View>;
-    constructor(rootElementId: string, store?: Object);
+    constructor(rootElementId: string, store: Object);
     /**
      * Initialize all elements
      *
      * @memberof TwoWay
      */
-    init(): void;
+    init(): Object;
     /**
      * Initialize all views
      *
@@ -23,19 +23,4 @@ export default class TwoWay {
      * @memberof TwoWay
      */
     initInputs(): void;
-    /**
-     * Set value in store
-     *
-     * @param {string} prop
-     * @param {*} val
-     * @memberof TwoWay
-     */
-    setValue(prop: string, val: any): void;
-    /**
-     * Get value from store
-     *
-     * @param {string} prop
-     * @memberof TwoWay
-     */
-    getValue(prop: string): void;
 }

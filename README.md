@@ -10,7 +10,13 @@ To add `twoway` to your website you simply include the library via CDN
 
 and when the page is ready run 
 
-    new TwoWay('#myApp');
+    let store = new TwoWay("#app", {
+            number: null,
+            color: null,
+            size: null,
+            name: "Fabs",
+        }
+    ).init();
 
 ## NPM
 
@@ -21,7 +27,13 @@ Install it via NPM
 and include and initialize it in you main file
 
     const TwoWay = require('twoway');
-    new TwoWay('#myApp');
+    let store = new TwoWay("#app", {
+            number: null,
+            color: null,
+            size: null,
+            name: "Fabs",
+        }
+    ).init();
 
 # Usage
 ## Select

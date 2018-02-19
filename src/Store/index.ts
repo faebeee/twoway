@@ -3,109 +3,69 @@ import View from "../View";
 
 export default class Store {
     values: Array<StoreItemInterface>;
+    store: Object;
+    subscribers: Array<Object>;
 
     constructor(initialStore: Object) {
         this.values = [];
-        const keys = Object.keys(initialStore);
+        this.subscribers = [];
 
-        for (let i = 0; i < keys.length; i++) {
-            const key = keys[i];
-            this.values.push({
-                name: key,
-                observers: [],
-                value: initialStore[key]
-            });
-        }
+        this.store = this.observe(initialStore, (property, value) => {
+            this.notifyObservers(property, value);
+        });
     }
 
-    /**
-     * Set value
-     *
-     * @param {string} prop
-     * @param {(Boolean | String | Number | Object)} value
-     * @memberof Store
-     */
-    setValue(prop: string, value: Boolean | String | Number | Object): void {
-        for (let i = 0; i < this.values.length; i++) {
-            const val = this.values[i];
-            if (val.name !== prop) {
+    buildProxy(prefix, o, callback) {
+        return new Proxy(o, {
+            set(target, property, value) {
+                
+                // same as above, but add prefix
+                callback(prefix + property, value);
+                target[property] = value;
+                return true;
+            },
+            get(target, property) {
+                // return a new proxy if possible, add to prefix
+                const out = target[property];
+                if (out instanceof Object) {
+                    return this.buildProxy(
+                        prefix + property + ".",
+                        out,
+                        callback
+                    );
+                }
+                return out; // primitive, ignore
+            }
+        });
+    }
+
+    observe(o, callback) {
+        return this.buildProxy("", o, callback);
+    }
+
+    notifyObservers(property: string, value: any) {
+        for (let i = 0; i < this.subscribers.length; i++) {
+            const subscriber = this.subscribers[i];
+            if (subscriber.property !== property) {
                 continue;
             }
-            val.value = value;
-            val.observers.forEach(observer => {
-                observer.update(value);
-            });
+            subscriber.observer.update(value);
         }
-    }
-
-    /**
-     * Get value
-     *
-     * @param {string} prop
-     * @returns {(Boolean | String | Number | Object)}
-     * @memberof Store
-     */
-    getValue(prop: string): Boolean | String | Number | Object {
-        for (let i = 0; i < this.values.length; i++) {
-            const val = this.values[i];
-            if (val.name === prop) {
-                return val.value;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Check if value has been setup in store
-     * 
-     * @param {string} prop 
-     * @returns {Boolean} 
-     * @memberof Store
-     */
-    isPropertySetUp(prop: string): Boolean {
-        for (let i = 0; i < this.values.length; i++) {
-            const val = this.values[i];
-            if (val.name === prop) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * setup prop
-     * 
-     * @param {string} prop 
-     * @memberof Store
-     */
-    setupProperty(prop: string): void {
-        this.values.push({
-            name: prop,
-            observers: [],
-            value: null
-        });
     }
 
     /**
      * Add new observer
-     * 
-     * @param {string} prop 
-     * @param {View} view 
+     *
+     * @param {string} prop
+     * @param {View} view
      * @memberof Store
      */
     registerObserver(prop: string, view: View): void {
-        if (!this.isPropertySetUp(prop)) {
-            this.setupProperty(prop);
-        }
+        this.subscribers.push({ 
+            property: prop,
+            observer: view
+         });
 
-        for (let i = 0; i < this.values.length; i++) {
-            const val = this.values[i];
-            if (val.name !== prop) {
-                continue;
-            }
-
-            val.observers.push(view);
-            view.update(this.getValue(prop));
-        }
+        view.update(this.store[prop]);
     }
 }

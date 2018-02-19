@@ -15,18 +15,18 @@ export default class Input {
         store.registerObserver(this.propertyName, this);
 
         this.element.addEventListener("change", e => {
-            this.value = (<HTMLInputElement>event.target).value;
+            this.value = (<HTMLInputElement>e.target).value;
             this.emitUpdateToStore();
         });
 
         this.element.addEventListener("keyup", e => {
-            this.value = (<HTMLInputElement>event.target).value;
+            this.value = (<HTMLInputElement>e.target).value;
             this.emitUpdateToStore();
         });
     }
 
     emitUpdateToStore(): void {
-        this.store.setValue(this.propertyName, this.value);
+        this.store.store[this.propertyName] = this.value;
     }
 
     update(value: any): void {

@@ -9,12 +9,10 @@ export default class TwoWay {
     store: Store;
     views: Array<View>;
 
-    constructor(rootElementId: string, store: Object = {}) {
+    constructor(rootElementId: string, store: Object) {
         this.rootElementId = rootElementId;
-        this.store = new Store(store || {});
+        this.store = new Store(store);
         this.views = [];
-
-        this.init();
     }
 
     /**
@@ -22,9 +20,10 @@ export default class TwoWay {
      * 
      * @memberof TwoWay
      */
-    init(): void {
+    init(): Object {
         this.initViews();
         this.initInputs();
+        return this.store.store;
     }
 
     /**
@@ -57,26 +56,5 @@ export default class TwoWay {
             const item = elements[i];
             this.views.push(new Input(item, this.store));
         }
-    }
-
-    /**
-     * Set value in store
-     * 
-     * @param {string} prop 
-     * @param {*} val 
-     * @memberof TwoWay
-     */
-    setValue(prop: string, val: any) {
-        this.store.setValue(prop, val);
-    }
-
-    /**
-     * Get value from store
-     * 
-     * @param {string} prop 
-     * @memberof TwoWay
-     */
-    getValue(prop: string) {
-        this.store.getValue(prop);
     }
 }

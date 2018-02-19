@@ -11,6 +11,14 @@
         <input data-model="name" type="text">
     </div>
 
+
+    <div>
+        <h2>Programmatic Input</h2>
+        <div data-property="programmaticName"></div>
+        <input data-model="programmaticName" type="text">
+        <button onclick="store.programmaticName = 'Admin'">Set 'Admin'</button>
+    </div>
+
     <div>
         <h2>Checkbox</h2>
         <div data-property="color"></div>
@@ -37,7 +45,12 @@
 <script src="../lib/bundle.js"></script>
 
 <script>
-    const app = new TwoWay("#app", {
-        name: 'Fabs'
-    });
+    let store = new TwoWay("#app", {
+            number: null,
+            color: null,
+            size: null,
+            name: "Fabs",
+            programmaticName: "Fabs",
+        }
+    ).init();
 </script>
