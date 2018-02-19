@@ -19,7 +19,8 @@
     "main": "./lib/bundle.js",
     "scripts": {
         "dev": "NODE_ENV=dev ./node_modules/.bin/webpack --config webpack.config.js",
-        "build": "./node_modules/.bin/webpack --config webpack.config.js"
+        "build": "./node_modules/.bin/webpack --config webpack.config.js",
+        "test": "./node_modules/mocha/bin/mocha --recursive test/*.test.js"
     },
     "author": "Faebeee",
     "license": "ISC",
@@ -29,8 +30,12 @@
         "babel-loader": "^7.1.2",
         "babel-minify-webpack-plugin": "^0.3.0",
         "babel-preset-env": "^1.6.1",
+        "karma": "^2.0.0",
+        "mocha": "^5.0.1",
         "ts-loader": "^3.5.0",
         "typescript": "^2.7.2",
+        "unit.js": "^2.0.0",
         "webpack": "^3.11.0"
-    }
+    },
+    "dependencies": {}
 }

@@ -1,18 +1,28 @@
 const path = require("path");
 const MinifyPlugin = require("babel-minify-webpack-plugin");
 
-const isDev = process.env.NODE_ENV === 'dev' ? true : false;
+const isDev = process.env.NODE_ENV === "dev" ? true : false;
+const buildForWeb = process.env.BUILD === "web" ? true : false;
 
 let plugins = [];
 
-if(!isDev){
+if (!isDev) {
     plugins.push(new MinifyPlugin({}, {}));
 }
 
+filename = "bundle.js";
+
+if (buildForWeb) {
+    if (isDev) {
+        filename = "bundle.web.min.js";
+    } else {
+        filename = "bundle.web.js";
+    }
+}
 module.exports = {
-    entry: "./src/index.js",
+    entry: buildForWeb ? "./src/web.js" : "./src/node.js",
     output: {
-        filename: isDev ? "bundle.js" : "./bundle.min.js",
+        filename,
         path: path.resolve(__dirname, "lib")
     },
     watch: isDev,

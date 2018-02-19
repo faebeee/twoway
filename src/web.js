@@ -1,6 +1,4 @@
 import Core from './Core';
-if(window){
+if(!module && window){
     window.TwoWay = Core;
 }
-
-export default Core;
