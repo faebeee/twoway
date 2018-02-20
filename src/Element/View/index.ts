@@ -17,13 +17,14 @@ export default class View implements ElementInterface {
         if (!this.propertyName) {
             throw new Error("No data-property found on element!");
         }
+        
         store.registerObserver(this.propertyName, this);
     }
 
     update(value: any): void{
         if (this.value !== value) {
             this.value = value;
-        this.element.innerHTML = this.value;            
+            this.element.innerHTML = this.value;            
         }
     }
 }

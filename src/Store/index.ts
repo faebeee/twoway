@@ -42,13 +42,12 @@ export default class Store {
         return this.buildProxy("", o, callback);
     }
 
-    notifyObservers(property: string, value: any) {
+    notifyObservers(property: string, value: any): void {
         for (let i = 0; i < this.subscribers.length; i++) {
             const subscriber = this.subscribers[i];
-            if (subscriber.property !== property) {
-                continue;
+            if (subscriber.property === property) {
+                subscriber.observer.update(value);
             }
-            subscriber.observer.update(value);
         }
     }
 

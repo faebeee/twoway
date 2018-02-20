@@ -5,6 +5,10 @@ export default class Input extends AbstractInput {
     constructor(element: Element, store: Store) {
         super(element, store);
 
+        this.element.addEventListener("change", e => {
+            this.update((<HTMLInputElement>e.target).value);
+        });
+
         this.element.addEventListener("keyup", e => {
             this.update((<HTMLInputElement>e.target).value);
         });

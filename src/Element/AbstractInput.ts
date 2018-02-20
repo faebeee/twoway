@@ -14,9 +14,6 @@ export default abstract class AbstractInput implements ElementInterface {
         this.store = store;
         store.registerObserver(this.propertyName, this);
 
-        this.element.addEventListener("change", e => {
-            this.update((<HTMLInputElement>e.target).value);
-        });
     }
 
     update(value: any): void{
