@@ -2,7 +2,6 @@ const path = require("path");
 const MinifyPlugin = require("babel-minify-webpack-plugin");
 
 const isDev = process.env.NODE_ENV === "dev" ? true : false;
-const buildForWeb = process.env.BUILD === "web" ? true : false;
 
 let plugins = [];
 
