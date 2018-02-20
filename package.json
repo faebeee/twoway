@@ -1,6 +1,6 @@
 {
     "name": "twoway",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "description": "Simple Zero dependency 2way databinding library",
     "keywords": [
         "twoway",
