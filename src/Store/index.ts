@@ -1,6 +1,6 @@
 import StoreItemInterface from "./StoreItemInterface";
 import SubscriberInterface from "./SubscriberInterface";
-import View from "../View";
+import View from "../Element/View";
 
 export default class Store {
     store: Object;
@@ -22,6 +22,7 @@ export default class Store {
                 target[property] = value;
                 return true;
             },
+            
             get(target, property) {
                 // return a new proxy if possible, add to prefix
                 const out = target[property];
@@ -47,7 +48,7 @@ export default class Store {
             if (subscriber.property !== property) {
                 continue;
             }
-            subscriber.observer.update(value);
+            subscriber.observer.setValue(value);
         }
     }
 
@@ -64,6 +65,6 @@ export default class Store {
             observer: view
         });
 
-        view.update(this.store[prop]);
+        view.setValue(this.store[prop]);
     }
 }

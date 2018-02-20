@@ -1,4 +1,4 @@
-import View from '../View';
+import View from '../Element/View';
 
 export default interface StoreItemInterface {
     property: string;

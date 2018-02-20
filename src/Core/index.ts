@@ -1,13 +1,16 @@
 "use strict";
 
-import View from "../View";
+import ElementInterface from "../Element/Interface";
+import View from "../Element/View";
 import Store from "../Store";
-import Input from "../View/Input";
+import Input from "../Element/Input";
+import Radiobox from "../Element/Radiobox";
+import AbstractInput from "../Element/AbstractInput";
 
 export default class TwoWay {
     rootElementId: string;
     store: Store;
-    views: Array<View>;
+    views: Array<ElementInterface>;
 
     constructor(rootElementId: string, store: Object) {
         this.rootElementId = rootElementId;
@@ -57,10 +60,12 @@ export default class TwoWay {
         const elements = document.querySelectorAll(
             `${this.rootElementId} [data-model]`
         );
-
         for (let i = 0; i < elements.length; i++) {
             const item = elements[i];
             this.views.push(new Input(item, this.store));
         }
+
+        //this._initFields(`${this.rootElementId} textarea[data-model]`, Input);
+        //this._initFields(`${this.rootElementId}  input[data-model][type="radio"]`, Radiobox);
     }
 }
