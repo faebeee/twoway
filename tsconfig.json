@@ -1,9 +1,10 @@
 {
+    "compileOnSave": true,
     "compilerOptions": {
         "outDir": "./lib/",
         "target": "es6",
-        "module": "es2015",
         "sourceMap": true,
-        "declaration": true
-    }
+        "allowJs": true
+    },
+    "exclude": ["node_modules", "**/*.test.*"]
 }

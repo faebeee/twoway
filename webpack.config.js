@@ -10,19 +10,17 @@ if (!isDev) {
     plugins.push(new MinifyPlugin({}, {}));
 }
 
-filename = "bundle.js";
+filename = "bundle.min.js";
 
-if (buildForWeb) {
-    if (isDev) {
-        filename = "bundle.web.min.js";
-    } else {
-        filename = "bundle.web.js";
-    }
+if (isDev) {
+    filename = "bundle.js";
 }
+
 module.exports = {
-    entry: buildForWeb ? "./src/web.js" : "./src/node.js",
+    entry: "./src/index.js",
     output: {
         filename,
+        library: 'TwoWay',
         path: path.resolve(__dirname, "lib")
     },
     watch: isDev,

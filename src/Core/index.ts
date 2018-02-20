@@ -19,7 +19,7 @@ export default class TwoWay {
 
     /**
      * Initialize all elements
-     * 
+     *
      * @memberof TwoWay
      */
     init() {
@@ -28,13 +28,13 @@ export default class TwoWay {
     }
 
     /** */
-    getStore(): Object{
+    getStore(): Object {
         return this.store.store;
     }
 
     /**
      * Initialize all views
-     * 
+     *
      * @memberof TwoWay
      */
     initViews() {
@@ -42,7 +42,7 @@ export default class TwoWay {
             `${this.rootElementId} [data-property]`
         );
 
-        for(let i = 0; i < elements.length; i++){
+        for (let i = 0; i < elements.length; i++) {
             const item = elements[i];
             this.views.push(new View(item, this.store));
         }
@@ -50,7 +50,7 @@ export default class TwoWay {
 
     /**
      * Initialize all input elements
-     * 
+     *
      * @memberof TwoWay
      */
     initInputs() {
