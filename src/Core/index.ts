@@ -4,7 +4,7 @@ import ElementInterface from "../Element/Interface";
 import View from "../Element/View";
 import Store from "../Store";
 import Input from "../Element/Input";
-import Radiobox from "../Element/Radiobox";
+import Checkbox from "../Element/Checkbox/index";
 import AbstractInput from "../Element/AbstractInput";
 
 export default class TwoWay {
@@ -28,6 +28,7 @@ export default class TwoWay {
     init() {
         this.initViews();
         this.initInputs();
+        this.initCheckbox();
     }
 
     /** */
@@ -51,21 +52,23 @@ export default class TwoWay {
         }
     }
 
-    /**
-     * Initialize all input elements
-     *
-     * @memberof TwoWay
-     */
     initInputs() {
         const elements = document.querySelectorAll(
-            `${this.rootElementId} [data-model]`
+            `${this.rootElementId} input[data-model]:not([type='checkbox'])`
         );
+
         for (let i = 0; i < elements.length; i++) {
             const item = elements[i];
             this.views.push(new Input(item, this.store));
         }
+    }
 
-        //this._initFields(`${this.rootElementId} textarea[data-model]`, Input);
-        //this._initFields(`${this.rootElementId}  input[data-model][type="radio"]`, Radiobox);
+    initCheckbox() {
+        const elements = document.querySelectorAll(`${this.rootElementId} input[type='checkbox'][data-model]`);
+
+        for (let i = 0; i < elements.length; i++) {
+            const item = elements[i];
+            this.views.push(new Checkbox(item, this.store));
+        }
     }
 }

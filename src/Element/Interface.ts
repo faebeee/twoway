@@ -6,12 +6,7 @@ export default interface ElementInterface {
     value: any;
     store: Store;
 
-    /**
-     * Called when a value has been updated
-     * 
-     * @memberof ElementInterface
-     */
-    update(): void;
+   
 
     /**
      * Update a value
@@ -19,5 +14,5 @@ export default interface ElementInterface {
      * @param {*} value 
      * @memberof ElementInterface
      */
-    setValue(value: any): void;
+    update(value: any): void;
 };

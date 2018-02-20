@@ -48,7 +48,7 @@ export default class Store {
             if (subscriber.property !== property) {
                 continue;
             }
-            subscriber.observer.setValue(value);
+            subscriber.observer.update(value);
         }
     }
 
@@ -65,6 +65,6 @@ export default class Store {
             observer: view
         });
 
-        view.setValue(this.store[prop]);
+        view.update(this.store[prop]);
     }
 }

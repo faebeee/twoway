@@ -20,14 +20,10 @@ export default class View implements ElementInterface {
         store.registerObserver(this.propertyName, this);
     }
 
-    setValue(value: any) {
+    update(value: any): void{
         if (this.value !== value) {
             this.value = value;
+        this.element.innerHTML = this.value;            
         }
-        this.update();
-    }
-
-    update(): void {
-        this.element.innerHTML = this.value;
     }
 }
