@@ -13,6 +13,12 @@
 
 
     <div>
+        <h2>Update Event</h2>
+        <div data-property="eventName"></div>
+        <input  id="updateEvent" data-model="eventName" type="text">
+    </div>
+
+    <div>
         <h2>Programmatic Input</h2>
         <div data-property="programmaticName"></div>
         <input data-model="programmaticName" type="text">
@@ -40,17 +46,31 @@
             <option value='l'>L</option>
         </select>
     </div>
+
+
+    <div>
+        <h2>Textarea</h2>        
+        <div data-property="message"></div>
+        <textarea data-model="message">
+        </textarea>
+    </div>
 </div>
 
 <script src="../lib/bundle.js"></script>
 
 <script>
+    document.getElementById("updateEvent").addEventListener('update', function(e) {
+        alert(e.detail);
+    });
+
     let store = TwoWay("#app", {
             number: null,
             color: null,
             size: null,
+            message: null,
+            eventName: null,
             name: "Fabs",
             programmaticName: "Fabs",
         }
-    ).getStore();
+    )
 </script>
