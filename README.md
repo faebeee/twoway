@@ -35,6 +35,9 @@ and include and initialize it in you main file
         }
     ).getStore();
 
+# Playground
+- [Simple Input](https://jsfiddle.net/faebeeee/qttdboyq/)
+
 # Usage
 
 ## Create a new store
