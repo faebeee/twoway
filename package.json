@@ -1,6 +1,6 @@
 {
     "name": "twoway",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Simple Zero dependency 2way databinding library",
     "keywords": [
         "twoway",
@@ -11,7 +11,7 @@
         "no jquery",
         "no framework",
         "vanilla js",
-        "library", 
+        "library",
         "interactive",
         "web app"
     ],
