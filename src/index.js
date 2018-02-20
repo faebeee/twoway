@@ -10,6 +10,6 @@ if (typeof exports !== "undefined") {
 }
 
 function create(rootId, state){
-    return new Core(rootId, state);
+    return new Core(rootId, state).getStore();
 }
     

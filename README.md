@@ -10,13 +10,13 @@ To add `twoway` to your website you simply include the library via CDN
 
 and when the page is ready run 
 
-    let store = new TwoWay("#app", {
+    let store = TwoWay("#app", {
             number: null,
             color: null,
             size: null,
             name: "Fabs",
         }
-    ).getStore();
+    );
 
 ## NPM
 
@@ -27,13 +27,13 @@ Install it via NPM
 and include and initialize it in you main file
 
     const TwoWay = require('twoway');
-    let store = new TwoWay("#app", {
+    let store = TwoWay("#app", {
             number: null,
             color: null,
             size: null,
             name: "Fabs",
         }
-    ).getStore();
+    );
 
 # Playground
 - [Simple Input](https://jsfiddle.net/faebeeee/qttdboyq/)
@@ -45,21 +45,18 @@ After loading the library in your project it is very simple to setup.
 First we create a new `TwoWay` object. The constructor required a root
 DOM node for your app and an initial state/store.
 
-    const twoway = new new TwoWay("#app", {
+    let store = TwoWay("#app", {
         name: "Fabs",
     })
-
-    let store = twoway.getStore();
 
 ## Manipulate store
 After creating the store you can easily manupulate the values by
 calling `store.name = 'Foo';` and the DOM updates automatically
 
-     const twoway = new new TwoWay("#app", {
+    let store = TwoWay("#app", {
         name: "Fabs",
     })
 
-    let store = twoway.getStore();
     store.name = "Foo Bar";
 
 ## Elements
