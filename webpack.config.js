@@ -19,7 +19,7 @@ module.exports = {
     entry: "./src/index.js",
     output: {
         filename,
-        library: 'TwoWay',
+        library: 'twoway',
         path: path.resolve(__dirname, "lib")
     },
     watch: isDev,
