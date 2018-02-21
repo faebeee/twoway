@@ -10,7 +10,7 @@ To add `twoway` to your website you simply include the library via CDN
 
 and when the page is ready run 
 
-    let store = TwoWay("#app", {
+    let store = twoway("#app", {
             number: null,
             color: null,
             size: null,
@@ -26,8 +26,8 @@ Install it via NPM
 
 and include and initialize it in you main file
 
-    const TwoWay = require('twoway');
-    let store = TwoWay("#app", {
+    const twoway = require('twoway');
+    let store = twoway("#app", {
             number: null,
             color: null,
             size: null,
@@ -45,7 +45,7 @@ After loading the library in your project it is very simple to setup.
 First we create a new `TwoWay` object. The constructor required a root
 DOM node for your app and an initial state/store.
 
-    let store = TwoWay("#app", {
+    let store = twoway("#app", {
         name: "Fabs",
     })
 
@@ -53,7 +53,7 @@ DOM node for your app and an initial state/store.
 After creating the store you can easily manupulate the values by
 calling `store.name = 'Foo';` and the DOM updates automatically
 
-    let store = TwoWay("#app", {
+    let store = twoway("#app", {
         name: "Fabs",
     })
 
@@ -70,6 +70,9 @@ calling `store.name = 'Foo';` and the DOM updates automatically
         <option value='l'>L</option>
     </select>
 
+### Radiobox
+Comming soon
+
 ### Checkbox
 
     <div data-property="color"></div>
@@ -82,10 +85,14 @@ calling `store.name = 'Foo';` and the DOM updates automatically
 
 
 ### Textarea
-Comming soon
+    
+    <div>
+        <h2>Textarea</h2>        
+        <div data-property="message"></div>
+        <textarea data-model="message">
+        </textarea>
+    </div>
 
-### Radiobox
-Comming soon
 
 ### Input
 
