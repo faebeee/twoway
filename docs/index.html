@@ -1,10 +1,10 @@
+<h1>TwoWay</h1>
 <div id=app>
     <div>
         <h2>Simple Input</h2>
         <div data-property="number"></div>
         <input data-model="number" type="number">
     </div>
-
     <div>
         <h2>Prefilled Input</h2>
         <div data-property="name"></div>
@@ -15,7 +15,7 @@
     <div>
         <h2>Update Event</h2>
         <div data-property="eventName"></div>
-        <input  id="updateEvent" data-model="eventName" type="text">
+        <input id="updateEvent" data-model="eventName" type="text">
     </div>
 
     <div>
@@ -49,7 +49,7 @@
     </div>
 
     <div>
-        <h2>Select</h2>        
+        <h2>Select</h2>
         <div data-property="size"></div>
         <select data-model="size">
             <option value='xs'>XS</option>
@@ -61,29 +61,28 @@
 
 
     <div>
-        <h2>Textarea</h2>        
+        <h2>Textarea</h2>
         <div data-property="message"></div>
         <textarea data-model="message">
         </textarea>
     </div>
 </div>
 
-<script src="../lib/bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/twoway"></script>
 
 <script>
-    document.getElementById("updateEvent").addEventListener('update', function(e) {
+    document.getElementById("updateEvent").addEventListener('update', function (e) {
         alert(e.detail);
     });
 
-    var store = TwoWay("#app", {
-            number: null,
-            color: null,
-            size: null,
-            message: null,
-            eventName: null,
-            planet: null,
-            name: "Fabs",
-            programmaticName: "Fabs",
-        }
-    )
+    var store = twoway("#app", {
+        number: null,
+        color: null,
+        size: null,
+        message: null,
+        eventName: null,
+        planet: null,
+        name: "Fabs",
+        programmaticName: "Fabs",
+    })
 </script>

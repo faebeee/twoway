@@ -33,7 +33,7 @@ export default class Store {
                         callback
                     );
                 }
-                return out; // primitive, ignore
+                return out;
             }
         });
     }

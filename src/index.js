@@ -1,15 +1,23 @@
-import Core from './Core';
+import Core from "./Core";
 
-if (typeof exports !== "undefined") {
-    if (typeof module !== "undefined" && module.exports) {
-        exports = module.exports = create;
+(function() {
+    if (typeof exports !== "undefined") {
+        if (typeof module !== "undefined" && module.exports) {
+            exports = module.exports = create;
+        }
+        exports.twoway = create;
+    } else {
+        root.twoway = create;
     }
-    exports.TwoWay = create;
-} else {
-    root.TwoWay = create;
-}
 
-function create(rootId, state){
-    return new Core(rootId, state).getStore();
-}
-    
+    /**
+     * create new instance
+     *
+     * @param {String} rootId
+     * @param {Object} state
+     * @returns
+     */
+    function create(rootId, state) {
+        return new Core(rootId, state).getStore();
+    }
+})();
