@@ -1,6 +1,6 @@
 {
     "name": "twoway",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "description": "Simple Zero dependency 2way databinding library",
     "keywords": [
         "twoway",
@@ -41,5 +41,5 @@
         "webpack": "^3.11.0"
     },
     "dependencies": {},
-    "basePath" : "./src"
+    "basePath": "./src"
 }
