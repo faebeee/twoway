@@ -12,10 +12,13 @@ export default class Input extends AbstractInput {
         this.element.addEventListener("keyup", e => {
             this.update((<HTMLInputElement>e.target).value);
         });
+        this.store.registerObserver(this.propertyName, this);
     }
 
     update(value: any): void {
         super.update(value);
-        this.element.value = value;
+        if(this.element.value !== value ) {
+            this.element.value = value;
+        }
     }
 }
