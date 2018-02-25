@@ -1,13 +1,13 @@
-import SubscriberInterface from "./SubscriberInterface";
 import View from "../Element/View/index";
 import buildProxy from './helpers';
+import ElementInterface from "../Element/ElementInterface";
 
 export default class Store {
     store: Object;
-    subscribers: Array<SubscriberInterface>;
+    scopedSubscribers: Object;
 
     constructor(initialStore: Object) {
-        this.subscribers = [];
+        this.scopedSubscribers = {};
 
         this.store = this.observe(initialStore, (property, value) => {
             this.notifyObservers(property);
@@ -53,10 +53,15 @@ export default class Store {
      * @private
      */
     _notifyProperty(property: string, value: any): void {
-        for (let i = 0; i < this.subscribers.length; i++) {
-            const subscriber = this.subscribers[i];
-            if (subscriber.property === property) {
-                subscriber.observer.update(value);
+        if(!this.scopedSubscribers[property]){
+            return;
+        }
+
+        const observers = this.scopedSubscribers[property].observers;
+        for (let i = 0; i < observers.length; i++) {
+            const observer = observers[i];
+            if (observer.value !== value) {
+                observer.update(value);
             }
         }
     }
@@ -68,12 +73,12 @@ export default class Store {
      * @param {View} view
      * @memberof Store
      */
-    registerObserver(prop: string, view: View): void {
-        this.subscribers.push({
-            property: prop,
-            observer: view
-        });
+    registerObserver(prop: string, view: ElementInterface): void {
+        if(!this.scopedSubscribers[prop]){
+            this.scopedSubscribers[prop] = {observers : []};
+        }
 
+        this.scopedSubscribers[prop].observers.push(view);
         this.notifyObservers(prop)
     }
 }

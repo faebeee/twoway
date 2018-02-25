@@ -24,7 +24,7 @@ export default abstract class AbstractInput implements ElementInterface {
         if (this.value !== value) {
             this.value = value;
             this.store.store[this.propertyName] = this.value;
-            this._emitUpdateToElement();
+            this.emitUpdateToElement();
         }
     }
 
@@ -33,7 +33,7 @@ export default abstract class AbstractInput implements ElementInterface {
      *
      * @memberof AbstractInput
      */
-    _emitUpdateToElement(): void {
+    emitUpdateToElement(): void {
         const event = new CustomEvent("update", { detail: this.value });
         this.element.dispatchEvent(event);
     }

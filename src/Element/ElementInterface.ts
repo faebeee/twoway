@@ -1,7 +1,7 @@
 import Store from "../Store/index";
 
 export default interface ElementInterface {
-    element: HTMLInputElement;
+    element: HTMLElement;
     model: string;
     value: any;
     store: Store;

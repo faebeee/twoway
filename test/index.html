@@ -15,7 +15,7 @@
     <div>
         <h2>Update Event</h2>
         <div data-property="eventName"></div>
-        <input  id="updateEvent" data-model="eventName" type="text">
+        <input id="updateEvent" data-model="eventName" type="text">
     </div>
 
     <div>
@@ -61,6 +61,28 @@
         </select>
     </div>
 
+    <div>
+        <h2>Select Multiple</h2>
+        <div data-property="meal"></div>
+        <select data-model="meal" multiple>
+            <option value='pizza'>Pizza</option>
+            <option value='tortellini'>Tortellini</option>
+            <option value='lasagne'>Lasagne</option>
+        </select>
+    </div>
+
+    <div>
+        <h2>Resetable Select Multiple</h2>
+        <div data-property="meal2"></div>
+        <select data-model="meal2" multiple>
+            <option value='pizza'>Pizza</option>
+            <option value='tortellini'>Tortellini</option>
+            <option value='lasagne'>Lasagne</option>
+        </select>
+
+        <button id="resetMealSelection">RESET</button>
+    </div>
+
 
     <div>
         <h2>Textarea</h2>
@@ -73,21 +95,26 @@
 <script src="../lib/bundle.js"></script>
 
 <script>
-    document.getElementById("updateEvent").addEventListener('update', function(e) {
+    document.getElementById("updateEvent").addEventListener('update', function (e) {
         alert(e.detail);
     });
 
-    document.getElementById("resetSelection").addEventListener('click', function(e) {
+    document.getElementById("resetSelection").addEventListener('click', function (e) {
         store.planet.mars = true;
         store.planet.jupiter = false;
+    });
+    document.getElementById("resetMealSelection").addEventListener('click', function (e) {
+        store.meal2 = ['pizza'];
     });
 
     var store = twoway("#app", {
             number: null,
             color: null,
-            size: null,
+            size: 'm',
             message: null,
             eventName: null,
+            meal: ['lasagne'],
+            meal2: null,
             planet: {mars: true, jupiter: false},
             name: "Fabs",
             programmaticName: "Fabs",
