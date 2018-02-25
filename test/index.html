@@ -40,16 +40,18 @@
     <div>
         <h2>Checkbox</h2>
         <div data-property="planet"></div>
+        <div data-property="planet.mars"></div>
         <label>
             <input type="checkbox" value="mars" data-model="planet"> Mars
         </label>
         <label>
-            <input type="checkbox" value="juputer" data-model="planet"> Juputer
+            <input type="checkbox" value="jupiter" data-model="planet"> Jupiter
         </label>
+        <button id="resetSelection">RESET</button>
     </div>
 
     <div>
-        <h2>Select</h2>        
+        <h2>Select</h2>
         <div data-property="size"></div>
         <select data-model="size">
             <option value='xs'>XS</option>
@@ -61,7 +63,7 @@
 
 
     <div>
-        <h2>Textarea</h2>        
+        <h2>Textarea</h2>
         <div data-property="message"></div>
         <textarea data-model="message">
         </textarea>
@@ -75,13 +77,18 @@
         alert(e.detail);
     });
 
+    document.getElementById("resetSelection").addEventListener('click', function(e) {
+        store.planet.mars = true;
+        store.planet.jupiter = false;
+    });
+
     var store = twoway("#app", {
             number: null,
             color: null,
             size: null,
             message: null,
             eventName: null,
-            planet: null,
+            planet: {mars: true, jupiter: false},
             name: "Fabs",
             programmaticName: "Fabs",
         }

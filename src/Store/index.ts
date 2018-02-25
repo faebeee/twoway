@@ -1,6 +1,6 @@
-import StoreItemInterface from "./StoreItemInterface";
 import SubscriberInterface from "./SubscriberInterface";
-import View from "../Element/View";
+import View from "../Element/View/index";
+import buildProxy from './helpers';
 
 export default class Store {
     store: Object;
@@ -10,41 +10,49 @@ export default class Store {
         this.subscribers = [];
 
         this.store = this.observe(initialStore, (property, value) => {
-            this.notifyObservers(property, value);
+            this.notifyObservers(property);
         });
     }
 
-    buildProxy(prefix: string, o: any, callback: Function) {
-        return new Proxy(o, {
-            set(target, property, value) {
-                // same as above, but add prefix
-                callback(`${prefix}${property}`, value);
-                target[property] = value;
-                return true;
-            },
-            
-
-                
-            get(target, property) {
-                // return a new proxy if possible, add to prefix
-                const out = target[property];
-                if (out instanceof Object) {
-                    return this.buildProxy(
-                        `${prefix}${property}.`,
-                        out,
-                        callback
-                    );
-                }
-                return out;
-            }
-        });
-    }
-
+    /**
+     * Observe property for changes
+     *
+     * @param o
+     * @param {Function} callback
+     * @return {object}
+     */
     observe(o: any, callback: Function) {
-        return this.buildProxy("", o, callback);
+        return buildProxy("", o, callback);
     }
 
-    notifyObservers(property: string, value: any): void {
+    /**
+     * Notify all observers of updated property
+     *
+     * @param {string} property
+     * @param value
+     */
+    notifyObservers(property: string): void {
+        let path = property.split('.');
+        let propPath = "";
+        let storeVal = this.store;
+
+        for(let i = 0; i < path.length; i++){
+            if(propPath){
+                propPath+='.';
+            }
+            storeVal = storeVal[path[i]];
+            propPath = `${propPath}${path[i]}`;
+            this._notifyProperty(propPath, storeVal);
+        }
+    }
+
+    /**
+     *
+     * @param {string} property
+     * @param value
+     * @private
+     */
+    _notifyProperty(property: string, value: any): void {
         for (let i = 0; i < this.subscribers.length; i++) {
             const subscriber = this.subscribers[i];
             if (subscriber.property === property) {
@@ -66,6 +74,6 @@ export default class Store {
             observer: view
         });
 
-        view.update(this.store[prop]);
+        this.notifyObservers(prop)
     }
 }

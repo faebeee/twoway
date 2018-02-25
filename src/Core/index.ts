@@ -1,11 +1,10 @@
 "use strict";
 
 import ElementInterface from "../Element/ElementInterface";
-import View from "../Element/View";
-import Store from "../Store";
-import Input from "../Element/Input/Input";
-import Checkbox from "../Element/Input/Checkbox";
-import AbstractInput from "../Element/Input/AbstractInput";
+import View from "../Element/View/index";
+import Store from "../Store/index";
+import Input from "../Element/Input/Input/index";
+import Checkbox from "../Element/Input/Checkbox/index";
 
 export default class TwoWay {
     rootElementId: string;
@@ -27,11 +26,19 @@ export default class TwoWay {
      */
     init() {
         this.initViews();
-        this.initInputs();
-        this.initCheckbox();
+        //this.initCheckbox();
+
+        this.initInput(`${this.rootElementId} input[data-model]:not([type='radio']):not([type='checkbox'])`, Input);
+        this.initInput(`${this.rootElementId} textarea[data-model]`, Input);
+        this.initInput(`${this.rootElementId} select[data-model]`, Input);
+        this.initInput(`${this.rootElementId} input[type='radio'][data-model]`, Input);
+        this.initInput(`${this.rootElementId} input[type='checkbox'][data-model]`, Checkbox);
     }
 
-    /** */
+    /**
+     *
+     * @return {Object}
+     */
     getStore(): Object {
         return this.store.store;
     }
@@ -47,28 +54,22 @@ export default class TwoWay {
         );
 
         for (let i = 0; i < elements.length; i++) {
-            const item = elements[i];
+            const item = (<HTMLInputElement>elements[i]);
             this.views.push(new View(item, this.store));
         }
     }
 
-    initInputs() {
-        const elements = document.querySelectorAll(
-            `${this.rootElementId} input[data-model]:not([type='checkbox'])`
-        );
+    /**
+     *
+     * @param {string} selector
+     * @param AbstractInputClass
+     */
+    initInput(selector: string, AbstractInputClass: any) {
+        const elements = document.querySelectorAll(selector);
 
         for (let i = 0; i < elements.length; i++) {
-            const item = elements[i];
-            this.views.push(new Input(item, this.store));
-        }
-    }
-
-    initCheckbox() {
-        const elements = document.querySelectorAll(`${this.rootElementId} input[type='checkbox'][data-model]`);
-
-        for (let i = 0; i < elements.length; i++) {
-            const item = elements[i];
-            this.views.push(new Checkbox(item, this.store));
+            const item = (<HTMLInputElement>elements[i]);
+            this.views.push(new AbstractInputClass(item, this.store));
         }
     }
 }
