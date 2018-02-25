@@ -6,8 +6,6 @@ export default interface ElementInterface {
     value: any;
     store: Store;
 
-   
-
     /**
      * Update a value
      * 

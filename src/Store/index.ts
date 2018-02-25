@@ -14,7 +14,7 @@ export default class Store {
         });
     }
 
-    buildProxy(prefix, o, callback) {
+    buildProxy(prefix: string, o: any, callback: Function) {
         return new Proxy(o, {
             set(target, property, value) {
                 // same as above, but add prefix
@@ -23,6 +23,8 @@ export default class Store {
                 return true;
             },
             
+
+                
             get(target, property) {
                 // return a new proxy if possible, add to prefix
                 const out = target[property];
@@ -38,7 +40,7 @@ export default class Store {
         });
     }
 
-    observe(o, callback) {
+    observe(o: any, callback: Function) {
         return this.buildProxy("", o, callback);
     }
 

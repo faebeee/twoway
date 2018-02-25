@@ -40,5 +40,6 @@
         "unit.js": "^2.0.0",
         "webpack": "^3.11.0"
     },
-    "dependencies": {}
+    "dependencies": {},
+    "basePath" : "./src"
 }

@@ -1,6 +1,5 @@
 import Store from "../../Store/index";
-import ElementInterface from "../Interface";
-import AbstractInput from "../AbstractInput";
+import ElementInterface from "../ElementInterface";
 
 export default class View implements ElementInterface {
     element: Element;

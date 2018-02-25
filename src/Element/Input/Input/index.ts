@@ -1,5 +1,5 @@
 import AbstractInput from "../AbstractInput";
-import Store from "../../Store/index";
+import Store from "../../../Store";
 
 export default class Input extends AbstractInput {
     constructor(element: Element, store: Store) {

@@ -1,11 +1,11 @@
 "use strict";
 
-import ElementInterface from "../Element/Interface";
+import ElementInterface from "../Element/ElementInterface";
 import View from "../Element/View";
 import Store from "../Store";
-import Input from "../Element/Input";
-import Checkbox from "../Element/Checkbox/index";
-import AbstractInput from "../Element/AbstractInput";
+import Input from "../Element/Input/Input";
+import Checkbox from "../Element/Input/Checkbox";
+import AbstractInput from "../Element/Input/AbstractInput";
 
 export default class TwoWay {
     rootElementId: string;
