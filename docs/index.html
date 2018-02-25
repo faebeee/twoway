@@ -1,10 +1,12 @@
 <h1>TwoWay</h1>
+
 <div id=app>
     <div>
         <h2>Simple Input</h2>
         <div data-property="number"></div>
         <input data-model="number" type="number">
     </div>
+
     <div>
         <h2>Prefilled Input</h2>
         <div data-property="name"></div>
@@ -15,7 +17,7 @@
     <div>
         <h2>Update Event</h2>
         <div data-property="eventName"></div>
-        <input id="updateEvent" data-model="eventName" type="text">
+        <input  id="updateEvent" data-model="eventName" type="text">
     </div>
 
     <div>
@@ -40,12 +42,14 @@
     <div>
         <h2>Checkbox</h2>
         <div data-property="planet"></div>
+        <div data-property="planet.mars"></div>
         <label>
             <input type="checkbox" value="mars" data-model="planet"> Mars
         </label>
         <label>
-            <input type="checkbox" value="juputer" data-model="planet"> Juputer
+            <input type="checkbox" value="jupiter" data-model="planet"> Jupiter
         </label>
+        <button id="resetSelection">RESET</button>
     </div>
 
     <div>
@@ -70,19 +74,26 @@
 
 <script src="https://cdn.jsdelivr.net/npm/twoway@latest"></script>
 
+
 <script>
-    document.getElementById("updateEvent").addEventListener('update', function (e) {
+    document.getElementById("updateEvent").addEventListener('update', function(e) {
         alert(e.detail);
     });
 
+    document.getElementById("resetSelection").addEventListener('click', function(e) {
+        store.planet.mars = true;
+        store.planet.jupiter = false;
+    });
+
     var store = twoway("#app", {
-        number: null,
-        color: null,
-        size: null,
-        message: null,
-        eventName: null,
-        planet: null,
-        name: "Fabs",
-        programmaticName: "Fabs",
-    })
+            number: null,
+            color: null,
+            size: null,
+            message: null,
+            eventName: null,
+            planet: {mars: true, jupiter: false},
+            name: "Fabs",
+            programmaticName: "Fabs",
+        }
+    )
 </script>
