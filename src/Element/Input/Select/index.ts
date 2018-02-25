@@ -23,6 +23,16 @@ export default class Select implements ElementInterface {
         });
 
         this.store.registerObserver(this.propertyName, this);
+
+
+        let selected = this.getSelectedOptions();
+        if(this.isMulti){
+            this.value = selected;
+        }else{
+            this.value = selected.shift();
+            this.onChange(this.value);
+        }
+
     }
 
     getSelectedOptions() {

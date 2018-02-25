@@ -61,6 +61,29 @@
         </select>
     </div>
 
+
+    <div>
+        <h2>HTML Preselected Select</h2>
+        <div data-property="size2"></div>
+        <select data-model="size2">
+            <option value='xs'>XS</option>
+            <option value='s'>S</option>
+            <option selected value='m'>M</option>
+            <option value='l'>L</option>
+        </select>
+    </div>
+
+    <div>
+        <h2>Store Preselected Select</h2>
+        <div data-property="size3"></div>
+        <select data-model="size3">
+            <option value='xs'>XS</option>
+            <option value='s'>S</option>
+            <option selected value='m'>M</option>
+            <option value='l'>L</option>
+        </select>
+    </div>
+
     <div>
         <h2>Select Multiple</h2>
         <div data-property="meal"></div>
@@ -110,7 +133,9 @@
     var store = twoway("#app", {
             number: null,
             color: null,
-            size: 'm',
+            size: null,
+            size2: null,
+            size3: 'm',
             message: null,
             eventName: null,
             meal: ['lasagne'],

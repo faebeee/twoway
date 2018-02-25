@@ -5,6 +5,7 @@ import View from "../Element/View/index";
 import Store from "../Store/index";
 import Input from "../Element/Input/Input/index";
 import Checkbox from "../Element/Input/Checkbox/index";
+import Radiobox from "../Element/Input/Radiobox/index";
 import Select from "../Element/Input/Select/index";
 
 export default class TwoWay {
@@ -32,7 +33,7 @@ export default class TwoWay {
         this.initInput(`${this.rootElementId} input[data-model]:not([type='radio']):not([type='checkbox'])`, Input);
         this.initInput(`${this.rootElementId} textarea[data-model]`, Input);
         this.initInput(`${this.rootElementId} select[data-model]`, Select);
-        this.initInput(`${this.rootElementId} input[type='radio'][data-model]`, Input);
+        this.initInput(`${this.rootElementId} input[type='radio'][data-model]`, Radiobox);
         this.initInput(`${this.rootElementId} input[type='checkbox'][data-model]`, Checkbox);
     }
 
