@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/twoway@0.0.16"></script>
+
 <h1>TwoWay</h1>
 
 <div id=app>
@@ -17,7 +19,7 @@
     <div>
         <h2>Update Event</h2>
         <div data-property="eventName"></div>
-        <input  id="updateEvent" data-model="eventName" type="text">
+        <input id="updateEvent" data-model="eventName" type="text">
     </div>
 
     <div>
@@ -65,6 +67,51 @@
 
 
     <div>
+        <h2>HTML Preselected Select</h2>
+        <div data-property="size2"></div>
+        <select data-model="size2">
+            <option value='xs'>XS</option>
+            <option value='s'>S</option>
+            <option selected value='m'>M</option>
+            <option value='l'>L</option>
+        </select>
+    </div>
+
+    <div>
+        <h2>Store Preselected Select</h2>
+        <div data-property="size3"></div>
+        <select data-model="size3">
+            <option value='xs'>XS</option>
+            <option value='s'>S</option>
+            <option selected value='m'>M</option>
+            <option value='l'>L</option>
+        </select>
+    </div>
+
+    <div>
+        <h2>Select Multiple</h2>
+        <div data-property="meal"></div>
+        <select data-model="meal" multiple>
+            <option value='pizza'>Pizza</option>
+            <option value='tortellini'>Tortellini</option>
+            <option value='lasagne'>Lasagne</option>
+        </select>
+    </div>
+
+    <div>
+        <h2>Resetable Select Multiple</h2>
+        <div data-property="meal2"></div>
+        <select data-model="meal2" multiple>
+            <option value='pizza'>Pizza</option>
+            <option value='tortellini'>Tortellini</option>
+            <option value='lasagne'>Lasagne</option>
+        </select>
+
+        <button id="resetMealSelection">RESET</button>
+    </div>
+
+
+    <div>
         <h2>Textarea</h2>
         <div data-property="message"></div>
         <textarea data-model="message">
@@ -72,25 +119,30 @@
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/twoway@0.0.16"></script>
-
 
 <script>
-    document.getElementById("updateEvent").addEventListener('update', function(e) {
+    document.getElementById("updateEvent").addEventListener('update', function (e) {
         alert(e.detail);
     });
 
-    document.getElementById("resetSelection").addEventListener('click', function(e) {
+    document.getElementById("resetSelection").addEventListener('click', function (e) {
         store.planet.mars = true;
         store.planet.jupiter = false;
+    });
+    document.getElementById("resetMealSelection").addEventListener('click', function (e) {
+        store.meal2 = ['pizza'];
     });
 
     var store = twoway("#app", {
             number: null,
             color: null,
             size: null,
+            size2: null,
+            size3: 'm',
             message: null,
             eventName: null,
+            meal: ['lasagne'],
+            meal2: null,
             planet: {mars: true, jupiter: false},
             name: "Fabs",
             programmaticName: "Fabs",
